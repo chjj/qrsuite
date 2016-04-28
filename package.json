@@ -1,0 +1,15 @@
+{
+  "name": "qrsuite",
+  "version": "0.0.1",
+  "description": "jsqrcode and qr.js rolled into one package",
+  "main": "./index.js",
+  "repository": "git://github.com/chjj/qrsuite.git",
+  "keywords": [
+    "qr"
+  ],
+  "author": "Christopher Jeffrey <chjjeffrey@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/chjj/qrsuite/issues"
+  },
+  "homepage": "https://github.com/chjj/qrsuite"
+}
