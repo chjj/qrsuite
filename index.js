@@ -1,22 +1,19 @@
 /*!
- * QR codes
- * Copyright (c) 2014-2016, Christopher Jeffrey (MIT License).
+ * QR code suite
+ * Copyright (c) 2016, Christopher Jeffrey (MIT License).
  */
 
-var url = require('url');
-var querystring = require('querystring');
-var fs, cp;
-
-var isBrowser =
-  (typeof process !== 'undefined' && process.browser)
-  || typeof window !== 'undefined';
+var cp;
 
 try {
-  fs = require('f' + 's');
   cp = require('child_' + 'process');
 } catch (e) {
   ;
 }
+
+var isBrowser =
+  (typeof process !== 'undefined' && process.browser)
+  || typeof window !== 'undefined';
 
 exports.scanning = false;
 
@@ -26,7 +23,7 @@ exports.scanning = false;
  */
 
 exports.scanBrowser = function scanBrowser(callback) {
-  var div, height, width, video, canvas;
+  var div, height, width, video, canvas, timer;
   var context, URL, getUserMedia, mediaStream, called;
   var jsqrcode = require('./jsqrcode');
 
@@ -98,10 +95,8 @@ exports.scanBrowser = function scanBrowser(callback) {
     callback(err, result);
   }
 
-  if (!getUserMedia) {
-    return done(
-      new Error('Webcam streaming not supported by browser.'));
-  }
+  if (!getUserMedia)
+    return done(new Error('Webcam streaming not supported by browser.'));
 
   getUserMedia.call(navigator, { video: true, audio: false }, function(stream) {
     var url;
